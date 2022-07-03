@@ -1,0 +1,25 @@
+<div class="meat-selection">
+    <div class="meat-selector">
+        <div class="meat-selector-header">Wybierz rodzaj mięsa</div>
+        <div class="meat-selector-dropdown">
+        </div>
+    </div>
+    <div class="selected-meat-list">
+        <table>
+            <tr>
+                <td style="width: 20%;">Nazwa</td>
+                <td style="width: 20%;">Waga</td>
+                <td style="width: 20%;">Kalorie</td>
+                <td style="width: 20%;">Białko</td>
+                <td style="width: 20%;">Tłuszcze</td>
+            </tr>
+            <tr *ngFor="let meat of selectedMeats">
+                <td style="width: 20%;">{{ meat.Name }}</td>
+                <td style="width: 20%;">{{ meat.Weight }}g</td>
+                <td style="width: 20%;">{{ meat.Kcal }}</td>
+                <td style="width: 20%;">{{ meat.Protein }}g</td>
+                <td style="width: 20%;">{{ meat.Fats }}g</td>
+            </tr>
+        </table>
+    </div>
+</div>
