@@ -1,0 +1,66 @@
+.meat-selection {
+    position: relative;
+}
+
+.meat-selector-header {
+    padding-left: 20px;
+    padding-top: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #66B2FF;
+    border-top: 0.5px solid black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.meat-selector-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.meat-selector-dropdown input {
+    position: relative;
+    float: left;
+    width: 60px;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.meat-selector-dropdown button {
+    position: relative;
+    float: left;
+    background-color: #0982C7;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 80px;
+    border-radius: 5px;
+}
+
+.list-table {
+    width: 100%;
+}
+
+.list-table > tr > td {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.list-table-body {
+    border-bottom: 0.1px solid black;
+}
+
+.list-table-header {
+    width: 100%;
+    height: 25px;
+    background-color: #C0C0C0;
+    font-weight: 400;
+}
+
+.list-table-summary {
+    width: 100%;
+    height: 25px;
+    background-color: #C0C0C0;
+    font-weight: 400;
+}

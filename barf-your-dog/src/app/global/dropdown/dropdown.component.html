@@ -1,0 +1,9 @@
+<div class="dropdown">
+    <select #defDropdown (change)="addToList()">
+        <option default>Wybierz mięso</option>
+        <option 
+        *ngFor="let item of items" 
+        value="{{ item.Id }}"
+        >{{ item.Name }}</option>
+    </select>
+</div>

@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { MeatSelectionComponent } from './main-dashboard/meat-selection/meat-selection.component';
+import { DropdownComponent } from './global/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainDashboardComponent,
-    MeatSelectionComponent
+    MeatSelectionComponent,
+    DropdownComponent,
   ],
   imports: [
     BrowserModule,

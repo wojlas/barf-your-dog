@@ -1,0 +1,13 @@
+.dropdown {
+    float: left;
+    width: 60%;
+    margin-right: 20px;
+}
+
+.dropdown select {
+    position: relative;
+    margin: 20px;
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+}
