@@ -1,7 +1,9 @@
 import { NONE_TYPE } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MeatBaseService } from 'src/app/services/meat-base.service';
+import { VegetablesAndFruitsService } from 'src/app/services/vegetables-and-fruits.service';
 import { IMeatType } from '../interfaces/IMeatType';
+import { ITableHeader } from '../interfaces/ITableHeader';
 
 @Component({
   selector: 'app-meat-selection',
@@ -9,9 +11,14 @@ import { IMeatType } from '../interfaces/IMeatType';
   styleUrls: ['./meat-selection.component.css']
 })
 export class MeatSelectionComponent implements OnInit {
+  @ViewChild('weightInfo') weightValue!: ElementRef;
+  @ViewChild('weightInfo') weightValueVeg!: ElementRef;
 
   public allMeats: IMeatType[] = [];
+  public allTips: IMeatType[] = [];
   public selectedMeats: IMeatType[] = [];
+  public selectedTip: IMeatType[] = [];
+
   public commonElements: IMeatType = {
     Id: 0,
     Name: 'Łącznie',
@@ -21,22 +28,48 @@ export class MeatSelectionComponent implements OnInit {
     Fats: 0
   }
 
+  public tableColumnsHeader: ITableHeader[] = [
+    { Name: 'Nazwa', Width: 30 },
+    { Name: 'Waga', Width: 15 },
+    { Name: 'Kcal', Width: 15 },
+    { Name: 'Białka', Width: 15 },
+    { Name: 'Tłuszcze', Width: 15 },
+    { Name: '', Width: 10},
+    ]
+
   public isVisible: boolean = true;
   public selectedMeatId: number = 0;
+  public selectedTipId: number = 0;
 
-  constructor(private meatService: MeatBaseService) { }
+  constructor(
+    private meatService: MeatBaseService,
+    private tipsService: VegetablesAndFruitsService,
+    ) { }
 
   ngOnInit(): void {
     this.allMeats = this.meatService.getAllMeats();
+    this.allTips = this.tipsService.getAllTips();
+    
   }
 
-  onMeatSelected(id: number) {
-    this.selectedMeatId = id;
+  onMeatSelected(id: number, selector: string) {
+    
+    if (selector === 'meat') {
+      this.selectedMeatId = id;
+      
+    }
+
+    if (selector ==='vege') {
+      this.selectedTipId = id;
+      
+    }
+    
   }
 
   public addMeatToList(weight: any) {
     this.allMeats.forEach(el => {
       if (el.Id === +this.selectedMeatId) {
+        
         const recalculatedEl = this.macroCalculator(el, weight);
         
         this.selectedMeats.push(recalculatedEl);
@@ -46,6 +79,29 @@ export class MeatSelectionComponent implements OnInit {
         this.commonElements.Fats = +this.toDecimal(this.commonElements.Fats + el.Fats, 3);
       }
     })
+
+    this.weightValue.nativeElement.value = null;
+    this.weightValueVeg.nativeElement.value = null;
+    
+  }
+
+  public addTipToList(weight: any) {
+    this.allTips.forEach(el => {
+      if (el.Id === +this.selectedTipId) {
+        
+        const recalculatedEl = this.macroCalculator(el, weight);
+        
+        this.selectedMeats.push(recalculatedEl);
+        this.commonElements.Weight = +this.toDecimal(this.commonElements.Weight + el.Weight, 3);
+        this.commonElements.Kcal = +this.toDecimal(this.commonElements.Kcal + el.Kcal, 3);
+        this.commonElements.Protein = +this.toDecimal(this.commonElements.Protein + el.Protein, 3);
+        this.commonElements.Fats = +this.toDecimal(this.commonElements.Fats + el.Fats, 3);
+      }
+    })
+
+    this.weightValue.nativeElement.value = null;
+    this.weightValueVeg.nativeElement.value = null;
+    
   }
 
   public macroCalculator(element: IMeatType, weight: number) {
@@ -65,10 +121,10 @@ export class MeatSelectionComponent implements OnInit {
     return (figure * d/d).toFixed(decimals);
   };
 
-  public onDeleteItem(id: number) {
+  public onDeleteItem(item: IMeatType) {
     if (this.selectedMeats.length > 0) {
       this.selectedMeats.forEach((el, i) => {
-        if (el.Id === id) {
+        if (el.Id === item.Id) {
           this.selectedMeats.splice(i, 1);
 
           this.commonElements.Weight = +this.toDecimal(this.commonElements.Weight - el.Weight, 3);

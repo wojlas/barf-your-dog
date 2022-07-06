@@ -1,0 +1,26 @@
+.list-table {
+    width: 100%;
+}
+
+.list-table > tr > td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.list-table-body {
+    border-bottom: 0.1px solid black;
+}
+
+.list-table-header {
+    width: 100%;
+    height: 25px;
+    background-color: #C0C0C0;
+    font-weight: 400;
+}
+
+.list-table-summary {
+    width: 100%;
+    height: 25px;
+    background-color: #C0C0C0;
+    font-weight: 400;
+}

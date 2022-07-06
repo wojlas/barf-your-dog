@@ -17,12 +17,14 @@ export class DropdownComponent implements OnInit {
   @ViewChild('defDropdown') selectedElement!: ElementRef;
 
   @Input() items: any[] = [];
+  @Input() dropdownTag: string = '';
+  @Input() placeholder!: string;
 
   @Output() selectedMeatId = new EventEmitter<number>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
   }
 
   public addToList() {

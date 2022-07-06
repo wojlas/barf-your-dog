@@ -1,48 +1,35 @@
 <div class="meat-selection" *ngIf="isVisible; else closed_tab">
     <div class="meat-selector">
-        <div class="meat-selector-header" (click)="isVisible = !isVisible">Wybierz rodzaj mięsa</div>
+        <div class="meat-selector-header" (click)="isVisible = !isVisible" >Wybierz rodzaj mięsa i dodatki</div>
         <div class="meat-selector-dropdown">
             <app-dropdown 
-            [items]="allMeats"
-            (selectedMeatId)="onMeatSelected($event)"
+                [items]="allMeats"
+                (selectedMeatId)="onMeatSelected($event, 'meat')"
+                dropdownTag="'meat'"
+                placeholder="mięso"
             ></app-dropdown>
             <input #weightInfo type="number" value="weightInfo.value" placeholder="gram"/>
             <button (click)="addMeatToList(weightInfo.value)">Dodaj</button>
+
+            <app-dropdown 
+                [items]="allTips"
+                (selectedMeatId)="onMeatSelected($event, 'vege')"
+                dropdownTag="'vege'"
+                placeholder="dodatki"
+            ></app-dropdown>
+            <input #weightInfoVege type="number" value="weightInfoVege.value" placeholder="gram"/>
+            <button (click)="addTipToList(weightInfoVege.value)">Dodaj</button>
         </div>
     </div>
     <div class="selected-meat-list">
-        <table class="list-table">
-            <tr class="list-table-header">
-                <td style="width: 31%;">Nazwa</td>
-                <td style="width: 16%;">Waga</td>
-                <td style="width: 16%;">Kalorie</td>
-                <td style="width: 16%;">Białko</td>
-                <td style="width: 16%;">Tłuszcze</td>
-                <td style="width: 5%;"></td>
-            </tr>
-            <tr class="list-table-body" *ngFor="let meat of selectedMeats">
-                <td style="width: 31%;">{{ meat.Name }}</td>
-                <td style="width: 16%;">{{ meat.Weight }}g</td>
-                <td style="width: 16%;">{{ meat.Kcal }}</td>
-                <td style="width: 16%;">{{ meat.Protein }}g</td>
-                <td style="width: 16%;">{{ meat.Fats }}g</td>
-                <td style="width: 5%;" (click)="onDeleteItem(meat.Id)">
-                    <img 
-                    src="C:\Users\cukie\Downloads\remove-icon-png-7109.png"
-                    style="width: 100%; height: 100%" 
-                    />
-                </td>
-            </tr>
-            <tr class="list-table-summary" *ngIf="selectedMeats.length !== 0">
-                <td style="width: 31%; font: bolder;">{{ commonElements.Name }}</td>
-                <td style="width: 16%; font: bolder;">{{ commonElements.Weight }}g</td>
-                <td style="width: 16%; font: bolder;">{{ commonElements.Kcal }}</td>
-                <td style="width: 16%; font: bolder;">{{ commonElements.Protein }}g</td>
-                <td style="width: 16%; font: bolder;">{{ commonElements.Fats }}g</td>
-                <td style="width: 5%;"></td>
-            </tr>
-        </table>
+        <app-selected-list 
+            [header]="tableColumnsHeader"
+            [content]="selectedMeats"
+            [summary]="commonElements"
+            (deleteItem)="onDeleteItem($event)"
+        ></app-selected-list>
     </div>
+    <app-select-suplies></app-select-suplies>
 </div>
 
 <ng-template #closed_tab>
