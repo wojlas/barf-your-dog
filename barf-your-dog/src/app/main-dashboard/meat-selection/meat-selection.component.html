@@ -9,7 +9,7 @@
                 placeholder="mięso"
             ></app-dropdown>
             <input #weightInfo type="number" value="weightInfo.value" placeholder="gram"/>
-            <button (click)="addMeatToList(weightInfo.value)">Dodaj</button>
+            <button (click)="addMeatToList(weightInfo.value)" mat-mini-fab>Dodaj</button>
 
             <app-dropdown 
                 [items]="allTips"
@@ -39,4 +39,8 @@
     <div class="meat-selector" (click)="isVisible = !isVisible">
         <div class="meat-selector-header">Wybierz rodzaj mięsa i dodatki</div>
     </div>
+</ng-template>
+
+<ng-template #warningModal>
+    <!-- <app-warning-dialog [data]="{headerText: ''}"></app-warning-dialog> -->
 </ng-template>

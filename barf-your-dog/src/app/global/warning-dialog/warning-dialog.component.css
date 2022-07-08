@@ -1,16 +1,22 @@
+:host {
+    max-width: 320px;
+}
+
 .warning-dialog {
+    position: absolute;
     width: 60%;
     height: 150px;
     border-radius: 5px;
     border: 2px solid black;
     margin: auto;
-    margin-top: 50%;
-    margin-bottom: 50%;
     z-index: 99;
+    top: 40%;
+    left: 20%;
+    background-color: #FFFF;
 }
 
 .warning-dialog-header {
-    width: 100%;
+    width: calc(100% + 2px);
     height: 30px;
     background-color: #0982C7;
     border-top-left-radius: 5px;
@@ -22,6 +28,7 @@
     font-size: 15px;
     font-weight: 500;
     margin-top: -1px;
+    margin-left: -1px;
 }
 
 .warning-dialog-content > .warning-dialog-content-text {
@@ -29,8 +36,13 @@
     font-size: 20px;
 }
 
+.warning-dialog-content-buttons {
+    float: right;
+}
+
 .modal-btn {
     float: left;
+    margin-bottom: 0px;
 }
 
 .modal-btn > button {
@@ -40,7 +52,7 @@
 }
 
 .discard {
-    margin-left: 40%;
+    margin-right: 20px;
 }
 
 .discard > button {
@@ -48,7 +60,6 @@
 }
 
 .confirm {
-    margin-left: 10px;
     margin-right: 10px;
 }
 

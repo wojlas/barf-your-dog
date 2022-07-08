@@ -11,6 +11,8 @@ import { SelectSupliesComponent } from './main-dashboard/select-suplies/select-s
 import { FinalResultsComponent } from './main-dashboard/final-results/final-results.component';
 import { WarningDialogComponent } from './global/warning-dialog/warning-dialog.component';
 import { SetWeightComponent } from './global/set-weight/set-weight.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SetWeightComponent } from './global/set-weight/set-weight.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

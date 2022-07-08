@@ -3,6 +3,9 @@ import { MeatBaseService } from 'src/app/services/meat-base.service';
 import { VegetablesAndFruitsService } from 'src/app/services/vegetables-and-fruits.service';
 import { IMeatType } from '../interfaces/IMeatType';
 import { ITableHeader } from '../interfaces/ITableHeader';
+import { WarningDialogComponent } from 'src/app/global/warning-dialog/warning-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-meat-selection',
@@ -45,6 +48,7 @@ export class MeatSelectionComponent implements OnInit {
   constructor(
     private meatService: MeatBaseService,
     private tipsService: VegetablesAndFruitsService,
+    private modal: MatDialog,
     ) { }
 
   ngOnInit(): void {
@@ -67,22 +71,35 @@ export class MeatSelectionComponent implements OnInit {
   }
 
   public addMeatToList(weight: any) {
-    this.allMeats.forEach(el => {
-      if (el.Id === +this.selectedMeatId) {
-        
-        const recalculatedEl = this.macroCalculator(el, weight);
-        
-        this.selectedMeats.push(recalculatedEl);
-        this.commonElements.Weight = +this.toDecimal(this.commonElements.Weight + el.Weight, 3);
-        this.commonElements.Kcal = +this.toDecimal(this.commonElements.Kcal + el.Kcal, 3);
-        this.commonElements.Protein = +this.toDecimal(this.commonElements.Protein + el.Protein, 3);
-        this.commonElements.Fats = +this.toDecimal(this.commonElements.Fats + el.Fats, 3);
-      }
-    })
-
-    this.weightValue.nativeElement.value = null;
-    this.weightValueVeg.nativeElement.value = null;
     
+    if (!this.weightValue.nativeElement.value) {
+      const modalConfig = new MatDialogConfig();
+
+      modalConfig.disableClose = true;
+      modalConfig.data =  {
+        headerText: 'Nie można dodać',
+        contentText: 'Waga musi być większa niż 0',
+        confirmBtnText: 'Ok',
+      }
+
+      this.modal.open(WarningDialogComponent,  modalConfig);
+    } else {
+      this.allMeats.forEach(el => {
+        if (el.Id === +this.selectedMeatId) {
+          
+          const recalculatedEl = this.macroCalculator(el, weight);
+          
+          this.selectedMeats.push(recalculatedEl);
+          this.commonElements.Weight = +this.toDecimal(this.commonElements.Weight + el.Weight, 3);
+          this.commonElements.Kcal = +this.toDecimal(this.commonElements.Kcal + el.Kcal, 3);
+          this.commonElements.Protein = +this.toDecimal(this.commonElements.Protein + el.Protein, 3);
+          this.commonElements.Fats = +this.toDecimal(this.commonElements.Fats + el.Fats, 3);
+        }
+      })
+
+      this.weightValue.nativeElement.value = null;
+      this.weightValueVeg.nativeElement.value = null;
+    }
   }
 
   public addTipToList(weight: any) {
