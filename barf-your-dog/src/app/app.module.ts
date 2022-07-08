@@ -8,6 +8,9 @@ import { MeatSelectionComponent } from './main-dashboard/meat-selection/meat-sel
 import { DropdownComponent } from './global/dropdown/dropdown.component';
 import { SelectedListComponent } from './main-dashboard/selected-list/selected-list.component';
 import { SelectSupliesComponent } from './main-dashboard/select-suplies/select-suplies.component';
+import { FinalResultsComponent } from './main-dashboard/final-results/final-results.component';
+import { WarningDialogComponent } from './global/warning-dialog/warning-dialog.component';
+import { SetWeightComponent } from './global/set-weight/set-weight.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { SelectSupliesComponent } from './main-dashboard/select-suplies/select-s
     DropdownComponent,
     SelectedListComponent,
     SelectSupliesComponent,
+    FinalResultsComponent,
+    WarningDialogComponent,
+    SetWeightComponent,
   ],
   imports: [
     BrowserModule,

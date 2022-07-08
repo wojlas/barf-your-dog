@@ -29,11 +29,14 @@
             (deleteItem)="onDeleteItem($event)"
         ></app-selected-list>
     </div>
-    <app-select-suplies></app-select-suplies>
+    <div class="meat-selector-confirm-button"  *ngIf="selectedMeats.length">
+        <button class="next-step-btn" (click)="onNextStepHandler(true)">Dalej (dodaj wagę)</button>
+        <button class="next-step-btn" (click)="onNextStepHandler()">Dalej</button>
+    </div>
 </div>
 
 <ng-template #closed_tab>
     <div class="meat-selector" (click)="isVisible = !isVisible">
-        <div class="meat-selector-header">Wybierz rodzaj mięsa</div>
+        <div class="meat-selector-header">Wybierz rodzaj mięsa i dodatki</div>
     </div>
 </ng-template>

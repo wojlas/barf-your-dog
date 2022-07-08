@@ -1,6 +1,6 @@
 <div class="dropdown">
     <select #defDropdown (change)="addToList()">
-        <option default>Wybierz {{placeholder}}</option>
+        <option default *ngIf="isFirst">Wybierz {{placeholder}}</option>
         <option 
         *ngFor="let item of items" 
         value="{{ item.Id }}"

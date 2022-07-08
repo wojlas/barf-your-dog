@@ -1,1 +1,20 @@
-<p>select-suplies works!</p>
+<div class="suplies-selection" *ngIf="isVisible; else closedTab">
+    <div class="suplies-selector">
+        <div class="suplies-selector-header" (click)="isVisible = !isVisible">Wybierz suplementy</div>
+        <div class="suplies-selector-checkboxes">
+            <div class="suplies-selector-checkbox" *ngFor="let suple of allSuplies">
+                <span>{{suple.Name}}</span>
+                <input type="checkbox" [checked]="(suple.isChecked)" (change)="onCheck(suple.Id)">
+            </div>
+        </div>
+    </div>
+    <div class="suplies-selector-confirm-button">
+        <button class="next-step-btn" (click)="onNextStepHandler()">Dalej</button>
+    </div>
+</div>
+
+<ng-template #closedTab>
+    <div class="suplies-selector" (click)="isVisible = !isVisible">
+        <div class="suplies-selector-header">Wybierz suplementy</div>
+    </div>
+</ng-template>

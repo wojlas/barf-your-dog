@@ -1,5 +1,5 @@
 <table class="list-table">
-    <tr class="list-table-header">
+    <tr class="list-table-header" *ngIf="content.length !== 0">
         <td 
             *ngFor="let head of header"
             [ngStyle]="{'width.percent': head.Width}"

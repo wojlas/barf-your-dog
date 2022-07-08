@@ -22,6 +22,8 @@ export class DropdownComponent implements OnInit {
 
   @Output() selectedMeatId = new EventEmitter<number>();
 
+  public isFirst: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {    
@@ -29,6 +31,7 @@ export class DropdownComponent implements OnInit {
 
   public addToList() {
     this.selectedMeatId.emit(this.selectedElement.nativeElement.value);
+    this.isFirst = false;
   }
 
 }

@@ -1,0 +1,72 @@
+.set-weight-dialog {
+    width: 60%;
+    height: 150px;
+    border-radius: 5px;
+    border: 2px solid black;
+    margin: auto;
+    margin-top: 50%;
+    margin-bottom: 50%;
+    z-index: 99;
+}
+
+.set-weight-header {
+    width: 100%;
+    height: 30px;
+    background-color: #0982C7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding-left: 20px;
+    padding-top: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: -1px;
+}
+
+.set-weight-content > .set-weight-content-input {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.set-weight-content-input > input {
+    width: 75px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+.set-weight-content-buttons {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.set-weight-content-buttons > div > button {
+    border-radius: 5px;
+    width: 75px;
+    height: 32px;
+}
+
+.btn {
+    float: left;
+}
+
+.cancel {
+    margin-left: 35%;
+}
+
+.cancel > button {
+    background-color: #464141;
+}
+
+.confirm {
+    margin-left: -10px;
+    margin-right: 10px;
+}
+
+.confirm > button {
+    position: absolute;
+    background-color: #FF0303;
+}

@@ -1,0 +1,57 @@
+.warning-dialog {
+    width: 60%;
+    height: 150px;
+    border-radius: 5px;
+    border: 2px solid black;
+    margin: auto;
+    margin-top: 50%;
+    margin-bottom: 50%;
+    z-index: 99;
+}
+
+.warning-dialog-header {
+    width: 100%;
+    height: 30px;
+    background-color: #0982C7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding-left: 20px;
+    padding-top: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: -1px;
+}
+
+.warning-dialog-content > .warning-dialog-content-text {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.modal-btn {
+    float: left;
+}
+
+.modal-btn > button {
+    width: 75px;
+    height: 32px;
+    border-radius: 5px;
+}
+
+.discard {
+    margin-left: 40%;
+}
+
+.discard > button {
+    background-color: #464141;
+}
+
+.confirm {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.confirm > button {
+    background-color: #FF0303;
+}

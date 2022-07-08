@@ -1,0 +1,17 @@
+<div class="set-weight-dialog">
+    <div class="set-weight-header">Dodaj wagę</div>
+    <div class="set-weight-content">
+        <div class="set-weight-content-input">
+            <span>Wpisz wagę: </span>
+            <input type="number" placeholder="kg">
+        </div>
+        <div class="set-weight-content-buttons">
+            <div class="set-weight-content-cancel-btn cancel btn" *ngIf="cancelBtnText">
+                <button (click)="cancelBtnToggle()">Anuluj</button>
+            </div>
+            <div class="set-weight-content-confirm-btn confirm btn">
+                <button (click)="confirmBtnToggle()">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

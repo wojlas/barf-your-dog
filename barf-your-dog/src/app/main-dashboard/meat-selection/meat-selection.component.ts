@@ -1,5 +1,4 @@
-import { NONE_TYPE } from '@angular/compiler';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, OnInit, ViewChild } from '@angular/core';
 import { MeatBaseService } from 'src/app/services/meat-base.service';
 import { VegetablesAndFruitsService } from 'src/app/services/vegetables-and-fruits.service';
 import { IMeatType } from '../interfaces/IMeatType';
@@ -13,6 +12,8 @@ import { ITableHeader } from '../interfaces/ITableHeader';
 export class MeatSelectionComponent implements OnInit {
   @ViewChild('weightInfo') weightValue!: ElementRef;
   @ViewChild('weightInfo') weightValueVeg!: ElementRef;
+
+  @Output() afterMeatStep = new EventEmitter<{changeVisiblity: boolean, selectedFood: IMeatType}>();
 
   public allMeats: IMeatType[] = [];
   public allTips: IMeatType[] = [];
@@ -61,7 +62,6 @@ export class MeatSelectionComponent implements OnInit {
 
     if (selector ==='vege') {
       this.selectedTipId = id;
-      
     }
     
   }
@@ -134,9 +134,18 @@ export class MeatSelectionComponent implements OnInit {
         }
       })
     }
-
-    
   }
-  
 
+  public onNextStepHandler(withWeight?: boolean) {
+    
+    if (withWeight) {
+
+    } else {
+      this.isVisible = false;
+      this.afterMeatStep.emit({
+        changeVisiblity: true,
+        selectedFood: this.commonElements,
+      })
+    }
+  }
 }
