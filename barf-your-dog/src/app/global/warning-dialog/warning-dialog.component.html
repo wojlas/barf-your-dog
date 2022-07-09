@@ -1,4 +1,4 @@
-<div class="warning-dialog">
+<div class="warning-dialog" [hidden]="!openWarning">
     <div class="warning-dialog-header">
         <span>{{ headerText }}</span>
     </div>
@@ -8,10 +8,10 @@
         </div>
         <div class="warning-dialog-content-buttons">
             <div class="warning-dialog-discard-btn modal-btn discard" *ngIf="discardBtnText">
-                <button (click)="discardWindow">{{ discardBtnText }}</button>
+                <button (click)="discardWindow()">{{ discardBtnText }}</button>
             </div>
             <div class="warning-dialog-confirm-btn modal-btn confirm">
-                <button (click)="confirmWindow">{{ confirmBtnText }}</button>
+                <button (click)="confirmWindow()">{{ confirmBtnText }}</button>
             </div>
         </div>
     </div>

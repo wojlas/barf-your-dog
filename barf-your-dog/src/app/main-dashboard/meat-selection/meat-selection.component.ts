@@ -5,6 +5,8 @@ import { IMeatType } from '../interfaces/IMeatType';
 import { ITableHeader } from '../interfaces/ITableHeader';
 import { WarningDialogComponent } from 'src/app/global/warning-dialog/warning-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { SetWeightComponent } from 'src/app/global/set-weight/set-weight.component';
+import { DogWeightService } from 'src/app/services/dog-weight.service';
 
 
 @Component({
@@ -48,6 +50,7 @@ export class MeatSelectionComponent implements OnInit {
   constructor(
     private meatService: MeatBaseService,
     private tipsService: VegetablesAndFruitsService,
+    private dogWeightService: DogWeightService,
     private modal: MatDialog,
     ) { }
 
@@ -71,7 +74,6 @@ export class MeatSelectionComponent implements OnInit {
   }
 
   public addMeatToList(weight: any) {
-    
     if (!this.weightValue.nativeElement.value) {
       const modalConfig = new MatDialogConfig();
 
@@ -83,6 +85,7 @@ export class MeatSelectionComponent implements OnInit {
       }
 
       this.modal.open(WarningDialogComponent,  modalConfig);
+      this.modal.afterAllClosed.subscribe();
     } else {
       this.allMeats.forEach(el => {
         if (el.Id === +this.selectedMeatId) {
@@ -156,7 +159,28 @@ export class MeatSelectionComponent implements OnInit {
   public onNextStepHandler(withWeight?: boolean) {
     
     if (withWeight) {
+      const modalConfig = new MatDialogConfig();
 
+      modalConfig.disableClose = true;
+
+      const weightModal = this.modal.open(SetWeightComponent, modalConfig);
+      weightModal.afterClosed().subscribe(res => {
+        
+        if (res && res.IsSuccess) {
+            this.isVisible = false;
+            this.dogWeightService.setNewWeight(1, res.NewWeight)
+            this.afterMeatStep.emit({
+            changeVisiblity: true,
+            selectedFood: this.commonElements,
+          })
+        }  else if (res && !res.IsSuccess) {
+            this.isVisible = false;
+            this.afterMeatStep.emit({
+            changeVisiblity: true,
+            selectedFood: this.commonElements,
+          });
+        }
+      });
     } else {
       this.isVisible = false;
       this.afterMeatStep.emit({

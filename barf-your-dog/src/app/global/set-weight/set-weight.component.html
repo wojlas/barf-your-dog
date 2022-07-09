@@ -3,14 +3,14 @@
     <div class="set-weight-content">
         <div class="set-weight-content-input">
             <span>Wpisz wagę: </span>
-            <input type="number" placeholder="kg">
+            <input #weightInput type="number" placeholder="kg" [value]="weightInputVal" (keyup)="onInputChange(weightInput.value)">
         </div>
         <div class="set-weight-content-buttons">
             <div class="set-weight-content-cancel-btn cancel btn" *ngIf="cancelBtnText">
                 <button (click)="cancelBtnToggle()">Anuluj</button>
             </div>
             <div class="set-weight-content-confirm-btn confirm btn">
-                <button (click)="confirmBtnToggle()">Ok</button>
+                <button (click)="confirmBtnToggle()" [disabled]="!weightInputVal">Ok</button>
             </div>
         </div>
     </div>
