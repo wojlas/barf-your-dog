@@ -44,7 +44,6 @@ export class DogWeightService {
       Weight: weight,
       Date: new DataTransfer(),
     });
-    console.log(this.dogWeightBase);
     
   }
 }
