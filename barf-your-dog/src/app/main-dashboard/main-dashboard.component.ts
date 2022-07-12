@@ -17,7 +17,7 @@ export class MainDashboardComponent implements OnInit {
   public toggleComponentMeat: boolean = false;
   public toggleComponentSuplies: boolean = false;
 
-  public lastDogWeight?: IDogWeight;
+  public lastDogWeight?: any;
 
   constructor(
     private dogWeightService: DogWeightService,
@@ -25,7 +25,9 @@ export class MainDashboardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.lastDogWeight = this.dogWeightService.getLastWeight(1);
+    this.dogWeightService.getLastWeight(1).subscribe((res) => {
+      this.lastDogWeight = res;
+    })
   }
 
   public afterMeatStep(data: {changeVisiblity: boolean, selectedFood: IMeatType}) {

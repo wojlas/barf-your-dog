@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IMeatType } from '../main-dashboard/interfaces/IMeatType';
 
 @Injectable({
@@ -6,48 +8,15 @@ import { IMeatType } from '../main-dashboard/interfaces/IMeatType';
 })
 export class VegetablesAndFruitsService {
 
-  public vegeBase: IMeatType[] = [
-    {
-      Id: 1,
-      Name: 'Marchewka',
-      Weight: 100,
-      Kcal: 41,
-      Protein: 0.9,
-      Fats: 0.2,
-    },
-    {
-      Id: 2,
-      Name: 'Brokuł',
-      Weight: 100,
-      Kcal: 34,
-      Protein: 2.8,
-      Fats: 0.3,
-    },
-    {
-      Id: 3,
-      Name: 'Truskawka',
-      Weight: 100,
-      Kcal: 32,
-      Protein: 0.7,
-      Fats: 0.3,
-    },
-    {
-      Id: 4,
-      Name: 'Burak',
-      Weight: 100,
-      Kcal: 43,
-      Protein: 1.61,
-      Fats: 0.17,
-    },
-  ]
+  private _apiUrl = 'http://127.0.0.1:5000/vege/';
+  
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  public getAllTips() {
-    return this.vegeBase;
+  public getAllTips(): Observable<IMeatType[]> {
+    return this.http.get<IMeatType[]>(`${this._apiUrl}all/`)
   }
 
   public getOneTip(id: number) {
-    return [...this.vegeBase.filter(el => el.Id === id)];
+    return
   }
 }

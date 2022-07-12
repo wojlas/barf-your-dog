@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IDogWeight } from '../main-dashboard/interfaces/IDogWeight';
 
 @Injectable({
@@ -6,44 +8,26 @@ import { IDogWeight } from '../main-dashboard/interfaces/IDogWeight';
 })
 export class DogWeightService {
 
-  public dogWeightBase: IDogWeight[] = [
-    {
-      Id: 1,
-      WeightId: 1,
-      Name: 'Luna',
-      Sex: 'F',
-      Weight: 10.95,
-      Date: new Date(),
-    },
-    {
-      Id: 1,
-      WeightId: 2,
-      Name: 'Luna',
-      Sex: 'F',
-      Weight: 12.95,
-      Date: new Date(),
-    }
-  ]
+  private _apiUrl = 'http://127.0.0.1:5000/weight';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  public getLastWeight(id: number) {
-    const myDog = this.dogWeightBase.filter(dog => dog.Id === id);
-    return myDog.reduce((first, next) => (first.WeightId > next.WeightId) ? first : next);
+  public getLastWeight(id: number): Observable<IDogWeight> {
+    return this.http.get<IDogWeight>(`${this._apiUrl}/${id}/`)
   }
 
   public setNewWeight(id: number, weight: number) {
-    const myDog = this.dogWeightBase.filter(dog => dog.Id === id);
-    const lastWeightOfDog = myDog.reduce((first, next) => (first.WeightId > next.WeightId) ? first : next);
+    // const myDog = this.dogWeightBase.filter(dog => dog.Id === id);
+    // const lastWeightOfDog = myDog.reduce((first, next) => (first.WeightId > next.WeightId) ? first : next);
     
-    this.dogWeightBase.push({
-      Id: lastWeightOfDog.Id,
-      WeightId: lastWeightOfDog.WeightId + 1,
-      Name: lastWeightOfDog.Name,
-      Sex: lastWeightOfDog.Sex,
-      Weight: weight,
-      Date: new DataTransfer(),
-    });
+    // this.dogWeightBase.push({
+    //   Id: lastWeightOfDog.Id,
+    //   WeightId: lastWeightOfDog.WeightId + 1,
+    //   Name: lastWeightOfDog.Name,
+    //   Sex: lastWeightOfDog.Sex,
+    //   Weight: weight,
+    //   Date: new DataTransfer(),
+    // });
     
   }
 }

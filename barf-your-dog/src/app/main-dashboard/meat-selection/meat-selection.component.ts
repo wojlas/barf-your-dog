@@ -55,8 +55,13 @@ export class MeatSelectionComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.allMeats = this.meatService.getAllMeats();
-    this.allTips = this.tipsService.getAllTips();
+    this.meatService.getAllMeats().subscribe((res) => {
+      this.allMeats = res;
+    });
+
+    this.tipsService.getAllTips().subscribe((res) => {
+      this.allTips = res;
+    })
     
   }
 
