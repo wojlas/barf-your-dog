@@ -2,20 +2,19 @@
     <div class="header-title">
         <span>Barf your dog</span>
     </div>
-    <div class="header-dog-info" *ngIf="lastDogWeight">
-        <span class="dog-info-name text-weight-header">{{ lastDogWeight.Name }}</span><br>
-        <span class="dog-info-sex text-weight-header" *ngIf="lastDogWeight.Sex === 'F'">Suka</span>
-        <span class="dog-info-sex text-weight-header" *ngIf="lastDogWeight.Sex === 'M'">Pies</span>
-        <span class="dog-info-weight" (click)="setWeight(lastDogWeight.Id)">{{ lastDogWeight.Weight }}kg</span>
-    </div>
 </div>
 
 <div class="content">
-    <div class="meat-selection">
+    <div class="dog-info">
+        <app-dog-info
+        [dogInfo]="lastDogWeight"
+        ></app-dog-info>
+    </div>
+    <!-- <div class="meat-selection">
         <app-meat-selection
             (afterMeatStep)="afterMeatStep($event)"
         ></app-meat-selection>
-    </div>
+    </div> -->
     <div class="suplies-selection">
         <app-select-suplies
             [changeVisible]="toggleComponentMeat"

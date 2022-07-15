@@ -7,5 +7,6 @@ export interface IDogWeight {
     FullName?: string;
     Sex: string;
     Weight: number;
-    Date: Data;
+    DailyMeal: number;
+    Target: number;
 }

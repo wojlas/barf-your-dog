@@ -167,25 +167,13 @@ export class MeatSelectionComponent implements OnInit {
       const modalConfig = new MatDialogConfig();
 
       modalConfig.disableClose = true;
+      modalConfig.width = '350px';
+      modalConfig.height = '200px';
+      modalConfig.data = this.dogWeightService.getLastWeight(1);
+      modalConfig.data.cancelBtnText = 'Anuluj';
 
       const weightModal = this.modal.open(SetWeightComponent, modalConfig);
-      weightModal.afterClosed().subscribe(res => {
-        
-        if (res && res.IsSuccess) {
-            this.isVisible = false;
-            this.dogWeightService.setNewWeight(1, res.NewWeight)
-            this.afterMeatStep.emit({
-            changeVisiblity: true,
-            selectedFood: this.commonElements,
-          })
-        }  else if (res && !res.IsSuccess) {
-            this.isVisible = false;
-            this.afterMeatStep.emit({
-            changeVisiblity: true,
-            selectedFood: this.commonElements,
-          });
-        }
-      });
+      weightModal.afterClosed();
     } else {
       this.isVisible = false;
       this.afterMeatStep.emit({

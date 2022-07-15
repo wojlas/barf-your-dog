@@ -1,5 +1,5 @@
 import datetime
-from operator import attrgetter
+import json
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -81,18 +81,12 @@ dogWeightBase = [
       'Id': 1,
       'WeightId': 1,
       'Name': 'Luna',
+      'FullName': '',
       'Sex': 'F',
-      'Weight': 8.5,
-    #   'Date': datetime,
+      'Weight': 11,
+      'DailyMeal': 4,
+      'Target': 13,
     },
-    {
-      'Id': 1,
-      'WeightId': 2,
-      'Name': 'Luna',
-      'Sex': 'F',
-      'Weight': 12.95,
-    #   'Date': datetime,
-    }
   ]
 
 
@@ -110,11 +104,11 @@ def getAllVeges():
 
 #-- Weight service routes --#
 
-@app.route('/weight/<int:id>/')
+@app.route('/weight/<int:id>/', methods=['GET'])
 def getDogWeight(id):
     selectedDogWeightArr = []
     for dog in dogWeightBase:
-        if dog['Id'] == id:
+        if dog['Id'] == int(id):
             selectedDogWeightArr.append(dog)
 
     for dog in selectedDogWeightArr:
@@ -122,6 +116,19 @@ def getDogWeight(id):
             selectedDogWeightArr[0] = dog
 
     return jsonify(selectedDogWeightArr[0])
+
+@app.route('/weight/add/', methods=['POST'])
+def setNewWeight():
+  if request.method == 'POST':
+    data = request.data
+
+    dogWeightBase.append(data)
+
+    return jsonify({'isSuccess': 'true', 'message': 'saved correctly'}), 200
+
+
+  
+
         
 
     

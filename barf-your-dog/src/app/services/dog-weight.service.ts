@@ -13,21 +13,10 @@ export class DogWeightService {
   constructor(private http: HttpClient) { }
 
   public getLastWeight(id: number): Observable<IDogWeight> {
-    return this.http.get<IDogWeight>(`${this._apiUrl}/${id}/`)
+    return this.http.get<IDogWeight>(`${this._apiUrl}/${id}/`);
   }
 
-  public setNewWeight(id: number, weight: number) {
-    // const myDog = this.dogWeightBase.filter(dog => dog.Id === id);
-    // const lastWeightOfDog = myDog.reduce((first, next) => (first.WeightId > next.WeightId) ? first : next);
-    
-    // this.dogWeightBase.push({
-    //   Id: lastWeightOfDog.Id,
-    //   WeightId: lastWeightOfDog.WeightId + 1,
-    //   Name: lastWeightOfDog.Name,
-    //   Sex: lastWeightOfDog.Sex,
-    //   Weight: weight,
-    //   Date: new DataTransfer(),
-    // });
-    
+  public setNewWeight(result: IDogWeight): Observable<IDogWeight> {
+    return this.http.post<IDogWeight>(`${this._apiUrl}/add/`, result); 
   }
 }

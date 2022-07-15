@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SetWeightComponent } from '../global/set-weight/set-weight.component';
 import { DogWeightService } from '../services/dog-weight.service';
@@ -28,6 +28,8 @@ export class MainDashboardComponent implements OnInit {
     this.dogWeightService.getLastWeight(1).subscribe((res) => {
       this.lastDogWeight = res;
     })
+    
+    
   }
 
   public afterMeatStep(data: {changeVisiblity: boolean, selectedFood: IMeatType}) {
@@ -43,15 +45,18 @@ export class MainDashboardComponent implements OnInit {
   public setWeight(id: number) {
     const modalConfig = new MatDialogConfig();
 
-      modalConfig.disableClose = true;
+    modalConfig.disableClose = true;
+    modalConfig.width = '350px';
+    modalConfig.height = '200px';
+    modalConfig.data = this.lastDogWeight;
+    modalConfig.data.cancelBtnText = 'Anuluj';
 
-      const weightModal = this.modal.open(SetWeightComponent, modalConfig);
-      weightModal.afterClosed().subscribe(res => {
-        if (res && res.IsSuccess) {
-            this.dogWeightService.setNewWeight(id, res.NewWeight)
-            this.lastDogWeight = this.dogWeightService.getLastWeight(id)
-        }
-      });
+    const weightModal = this.modal.open(SetWeightComponent, modalConfig);
+    weightModal.afterClosed().subscribe(res => {
+      if (res && res.IsSuccess) {
+          this.lastDogWeight = res.NewWeight;
+      }
+    });
   }
 
 }

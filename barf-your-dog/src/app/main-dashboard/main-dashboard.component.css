@@ -44,21 +44,3 @@
     margin-top: 26px;
 
 }
-
-.dog-info-weight {
-    width: 35%;
-    height: 100%;
-    margin-left: 50px;
-    font-size: 30px;
-    padding-top: 20px;
-}
-
-.dog-info-name {
-    font-size: 20px;
-}
-
-.dog-info-sex {
-    font-size: 10px;
-    text-align: right;
-    padding-right: 55px;
-}

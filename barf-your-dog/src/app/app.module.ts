@@ -14,6 +14,7 @@ import { WarningDialogComponent } from './global/warning-dialog/warning-dialog.c
 import { SetWeightComponent } from './global/set-weight/set-weight.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DogInfoComponent } from './main-dashboard/dog-info/dog-info.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FinalResultsComponent,
     WarningDialogComponent,
     SetWeightComponent,
+    DogInfoComponent,
   ],
   imports: [
     BrowserModule,
