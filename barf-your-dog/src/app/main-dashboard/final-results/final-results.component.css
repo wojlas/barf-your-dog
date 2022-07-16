@@ -1,0 +1,14 @@
+.results {
+    position: relative;
+}
+
+.results-header {
+    padding-left: 20px;
+    padding-top: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #66B2FF;
+    border-top: 0.5px solid black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

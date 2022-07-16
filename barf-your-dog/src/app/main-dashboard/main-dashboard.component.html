@@ -5,9 +5,12 @@
 </div>
 
 <div class="content">
-    <div class="dog-info">
+    <div class="dog-info" style="height: 270px;">
         <app-dog-info
         [dogInfo]="lastDogWeight"
+        (weightOutput)="setDogInfo($event)"
+        (dailyOutput)="setDogInfo($event)"
+        (targetOutput)="setDogInfo($event)"
         ></app-dog-info>
     </div>
     <!-- <div class="meat-selection">
@@ -18,7 +21,7 @@
     <div class="suplies-selection">
         <app-select-suplies
             [changeVisible]="toggleComponentMeat"
-            (afterSupliesStep)="afterSupliesStep($event)"
+            (setSuplies)="setSelectedSuplies($event)"
         ></app-select-suplies>
     </div>
     <div class="results">

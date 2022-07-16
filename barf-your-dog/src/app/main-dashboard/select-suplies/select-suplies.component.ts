@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SupliesService } from 'src/app/services/suplies.service';
+import { ISuplie } from '../interfaces/ISuplie';
 
 @Component({
   selector: 'app-select-suplies',
@@ -14,9 +15,9 @@ export class SelectSupliesComponent implements OnInit {
     }
   }
 
-  @Output() afterSupliesStep = new EventEmitter<{changeVisiblity: boolean, suplies: any[]}>();
+  @Output() setSuplies = new EventEmitter<ISuplie[]>();
 
-  public allSuplies: any[] = [];
+  public allSuplies: ISuplie[] = [];
   public isVisible = false;
 
 
@@ -25,21 +26,51 @@ export class SelectSupliesComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.allSuplies = this.supliesService.getAllSuplies();
+    this.supliesService.getAllSuplies().subscribe(res => {
+     
+      if (res) {
+        this.allSuplies = res;
+
+        this.allSuplies.forEach(el => {
+
+          if (el.isChecked === 'true') {
+            el.isChecked = true;
+          } else if (el.isChecked === 'false') {
+            el.isChecked = false;
+          };
+        });
+        
+      }
+      this.setSuplies.emit(this.allSuplies.filter(el => el.isChecked));
+    });
+
   }
 
-  public onCheck(id: number) {
-    this.supliesService.isCheckedToggle(id);
-    
-  }
+  public onCheckToggle(id: number) {
+    this.allSuplies.forEach(el => {
+      
+      if (el.Id === id) {
+        el.isChecked = !el.isChecked;
 
-  public onNextStepHandler() {
-    this.isVisible = false;
-    let selectedSuplies = this.allSuplies.filter(el => el.isChecked)
-    this.afterSupliesStep.emit({
-      changeVisiblity: true,
-      suplies: selectedSuplies,
+        if (el.Name === 'Tran z dorsza' || el.Name === 'Olej z dzikiego łososia') {
+          this.twoSupliesToggle(el.Id, el.isChecked);
+        }
+      }
     })
+
+    this.setSuplies.emit(this.allSuplies.filter(el => el.isChecked));
+  }
+
+  public twoSupliesToggle(id: number, value: boolean): void {
+
+    if (this.allSuplies[id - 1].Name === 'Tran z dorsza') {
+      this.allSuplies[id].isChecked = !value;
+    };
+
+    if (this.allSuplies[id - 1].Name === 'Olej z dzikiego łososia') {
+      this.allSuplies[id - 2].isChecked = !value;
+    };
+    
   }
 
 }

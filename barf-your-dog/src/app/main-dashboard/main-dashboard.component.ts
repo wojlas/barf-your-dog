@@ -4,6 +4,7 @@ import { SetWeightComponent } from '../global/set-weight/set-weight.component';
 import { DogWeightService } from '../services/dog-weight.service';
 import { IDogWeight } from './interfaces/IDogWeight';
 import { IMeatType } from './interfaces/IMeatType';
+import { ISuplie } from './interfaces/ISuplie';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -18,6 +19,11 @@ export class MainDashboardComponent implements OnInit {
   public toggleComponentSuplies: boolean = false;
 
   public lastDogWeight?: any;
+  public supliesMixResut: any = {};
+  public dailyMeal!: number;
+  public dryMeal!: number;
+
+  private _dataForCalculate: any = {};
 
   constructor(
     private dogWeightService: DogWeightService,
@@ -27,6 +33,11 @@ export class MainDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.dogWeightService.getLastWeight(1).subscribe((res) => {
       this.lastDogWeight = res;
+      this._dataForCalculate['daily'] = res.DailyMeal;
+      this._dataForCalculate['weight'] = res.Weight;
+      this._dataForCalculate['target'] = res.Target;
+
+      this.calculateSuplies();
     })
     
     
@@ -37,26 +48,19 @@ export class MainDashboardComponent implements OnInit {
     this.toggleComponentMeat = data.changeVisiblity;
   }
 
-  public afterSupliesStep(data: {changeVisiblity: boolean, suplies: any[]}) {
-    this.toggleComponentSuplies = data.changeVisiblity;
-    this.selectedSuplies = data.suplies;
+  public setSelectedSuplies(data: ISuplie[]) {
+    this._dataForCalculate['suplies'] = data;
   }
 
-  public setWeight(id: number) {
-    const modalConfig = new MatDialogConfig();
+  public setDogInfo(data: { inputName: string, value: number }): void {
+    this._dataForCalculate[data.inputName] = data.value;
+  }
 
-    modalConfig.disableClose = true;
-    modalConfig.width = '350px';
-    modalConfig.height = '200px';
-    modalConfig.data = this.lastDogWeight;
-    modalConfig.data.cancelBtnText = 'Anuluj';
-
-    const weightModal = this.modal.open(SetWeightComponent, modalConfig);
-    weightModal.afterClosed().subscribe(res => {
-      if (res && res.IsSuccess) {
-          this.lastDogWeight = res.NewWeight;
-      }
-    });
+  public calculateSuplies(): void {
+    const { daily, weight, target, suplies} = this._dataForCalculate;
+    //calculate daily meal
+    this.dailyMeal = (target * (daily / 100)) * 1000;
+    this.dryMeal = this.dailyMeal - (this.dailyMeal * 0.7);
   }
 
 }

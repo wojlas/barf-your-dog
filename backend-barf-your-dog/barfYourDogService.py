@@ -1,5 +1,3 @@
-import datetime
-import json
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -76,7 +74,7 @@ vegeBase = [
     },
   ]
 
-dogWeightBase = [
+dogWeightBase = [  
     {
       'Id': 1,
       'WeightId': 1,
@@ -86,9 +84,53 @@ dogWeightBase = [
       'Weight': 11,
       'DailyMeal': 4,
       'Target': 13,
+      'NumberOfMeals': 2,
     },
   ]
 
+supliesBase = [
+  {
+      'Id': 1,
+      'Name': 'Omega3',
+      'Weight': 100,
+      'EPA': 197,
+      'isChecked': True,
+    },
+    {
+      'Id': 2,
+      'Name': 'Tran z dorsza',
+      'Weight': 100,
+      'iE': 12000,
+      'isChecked': True,
+    },
+    {
+      'Id': 3,
+      'Name': 'Olej z dzikiego łososia',
+      'Weight': 100,
+      'iE': 13900,
+      'isChecked': False,
+    },
+    {
+      'Id': 4,
+      'Name': 'Algi',
+      'Weight': 100,
+      'Jod': 82.1,
+      'JodDemand': 0.15,
+      'isChecked': True,
+    },
+    {
+      'Id': 5,
+      'Name': 'Skorupki jaj',
+      'Weight': 100,
+      'isChecked': True,
+    },
+    {
+      'Id': 6,
+      'Name': 'Drożdże',
+      'Weight': 100,
+      'isChecked': True,
+    }
+]
 
 #-- Meat service routes --#
 
@@ -127,7 +169,23 @@ def setNewWeight():
     return jsonify({'isSuccess': 'true', 'message': 'saved correctly'}), 200
 
 
-  
+# suplies service routes
+
+@app.route('/suplies/all', methods=['GET'])
+def getAllSuplies():
+  return jsonify(supliesBase) 
+
+@app.route('/suplies/edit/<int:id>/', methods=['UPDATE'])
+def editSuplieById(id):
+  if request.method == 'POST':
+    data = request.data
+
+    for sup in supliesBase:
+      if (sup.Id == int(id)):
+        sup = data
+
+    return jsonify({'isSuccess': 'true', 'message': 'saved correctly'}), 200
+
 
         
 

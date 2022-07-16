@@ -1,1 +1,15 @@
-<p>final-results works!</p>
+<div class="results" *ngIf="isVisible; else closedTab">
+    <div class="results-wraper">
+        <div class="results-header" (click)="isVisible = !isVisible">Mieszanka suplementów</div>
+        <div class="results-content">
+            Content
+        </div>
+    </div>
+</div>
+
+
+<ng-template #closedTab>
+    <div class="results-wraper">
+        <div class="results-header" (click)="isVisible = !isVisible">Mieszanka suplementów</div>
+    </div>
+</ng-template>

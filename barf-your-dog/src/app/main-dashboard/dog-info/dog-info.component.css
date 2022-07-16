@@ -1,0 +1,48 @@
+.dog-info-component {
+    position: relative;
+}
+
+.dog-info-section-header {
+    padding-left: 20px;
+    padding-top: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #66B2FF;
+    border-top: 0.5px solid black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;    
+}
+
+.header-name {
+    float: left;
+    margin-right: 15px;
+    margin-top: -3px;
+    font-size: 20px;
+}
+
+.dog-info-section-content {
+    width: 100%;
+    height: 60px;
+    margin-top: 30px;
+
+}
+
+.content-input {
+    float: left;
+    margin-left: 30px;
+    margin-top: -10px;
+    width: 120px;
+}
+
+.content-input > input {
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 120px;
+    height: 35px;
+    text-align: center;
+}
+
+.content-input > input::placeholder {
+    text-align: center;
+}

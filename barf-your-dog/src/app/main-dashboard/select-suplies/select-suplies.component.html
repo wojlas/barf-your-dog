@@ -4,12 +4,9 @@
         <div class="suplies-selector-checkboxes">
             <div class="suplies-selector-checkbox" *ngFor="let suple of allSuplies">
                 <span>{{suple.Name}}</span>
-                <input type="checkbox" [checked]="(suple.isChecked)" (change)="onCheck(suple.Id)">
+                <input type="checkbox" [checked]="(suple.isChecked)" (change)="onCheckToggle(suple.Id)">
             </div>
         </div>
-    </div>
-    <div class="suplies-selector-confirm-button">
-        <button class="next-step-btn" (click)="onNextStepHandler()">Dalej</button>
     </div>
 </div>
 

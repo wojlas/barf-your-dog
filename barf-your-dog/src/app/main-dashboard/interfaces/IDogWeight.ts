@@ -9,4 +9,5 @@ export interface IDogWeight {
     Weight: number;
     DailyMeal: number;
     Target: number;
+    NumberOfMeals: number;
 }

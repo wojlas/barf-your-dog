@@ -1,0 +1,51 @@
+<div class="dog-info-component" *ngIf="isVisible; else closedTab">
+    <div class="dog-info-section">
+        <div class="dog-info-section-header" (click)="isVisible = !isVisible">
+            <div class="header-name">{{ dogInformation?.Name }} </div>
+              Informacje</div>
+        <div class="dog-info-section-content">
+            <div class="row">
+                <div class="content-weight content-input">
+                    <span style="margin-left: 40px;">Waga</span>
+                    <input type="number" #weightInput placeholder="kg" value="{{ dogInformation.Weight }}" (keyup)="inputToggle('weight')">
+                </div>
+                <div class="content-daily-meal content-input" style="width: 170px;">
+                    <span style="margin-left: 10px;">% masy docelowej</span>
+                    <input type="number" #dailyInput style="width: 170px;" placeholder="%" value="{{ targetWeightPerc }}" (keyup)="inputToggle('daily')">
+                </div>
+                <div class="content-target content-input" style="width: 150px;">
+                    <span style="margin-left: 5px;">Docelowa masa</span>
+                    <input type="number" #targetInput style="width: 150px;" placeholder="kg" value="{{ targetWeight }}" (keyup)="inputToggle('target')">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="content-daily content-input" style="width: 190px;">
+                    <span style="margin-left: 10px;">Dawka dzienna</span>
+                    <input disabled type="number" placeholder="gram" value="{{ dailyMeal }}">
+                </div>
+                <div class="content-dry-meal content-input" style="width: 160px; margin-left: -65px;">
+                    <span style="margin-left: 20px;">Sucha masa</span>
+                    <input disabled type="number" placeholder="gram" value="{{ dryMeal }}">
+                </div>
+                <div class="content-meal-nr content-input" style="width: 100px; margin-left: -35px;">
+                    <span style="margin-left: 40px;">Porcje</span>
+                    <input type="number" #mealNr value="{{ nrOfMeals }}" (keyup)="inputToggle('meal-nr')">
+                </div>
+                <div class="content-single-meal content-input" style="width: 175px; margin-left: 25px;">
+                    <span style="margin-left: 10px;">Gram na porcję</span>
+                    <input disabled type="number" placeholder="gram" value="{{ singleMeal }}">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #closedTab>
+    <div class="dog-info-section" (click)="isVisible = !isVisible">
+        <div class="dog-info-section-header" (click)="isVisible = !isVisible">
+            <div class="header-name">{{ dogInformation?.Name }} </div>
+              Informacje</div>
+    </div>
+</ng-template>
