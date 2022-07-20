@@ -2,7 +2,10 @@
     <div class="results-wraper">
         <div class="results-header" (click)="isVisible = !isVisible">Mieszanka suplementów</div>
         <div class="results-content">
-            Content
+            <app-selected-list
+                [header]="finalHeader"
+                [contentSuple]="supliesArr"
+            ></app-selected-list>
         </div>
     </div>
 </div>

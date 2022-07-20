@@ -93,7 +93,8 @@ supliesBase = [
       'Id': 1,
       'Name': 'Omega3',
       'Weight': 100,
-      'EPA': 197,
+      'EPA': 0.197,
+      'dailyDemand': 30,
       'isChecked': True,
     },
     {
@@ -101,6 +102,7 @@ supliesBase = [
       'Name': 'Tran z dorsza',
       'Weight': 100,
       'iE': 12000,
+      'dogDemand': 20,
       'isChecked': True,
     },
     {
@@ -108,6 +110,7 @@ supliesBase = [
       'Name': 'Olej z dzikiego łososia',
       'Weight': 100,
       'iE': 13900,
+      'dogDemand': 20,
       'isChecked': False,
     },
     {
@@ -122,6 +125,7 @@ supliesBase = [
       'Id': 5,
       'Name': 'Skorupki jaj',
       'Weight': 100,
+      'doseToGram': 6.5,
       'isChecked': True,
     },
     {

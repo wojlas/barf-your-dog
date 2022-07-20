@@ -1,11 +1,12 @@
 <table class="list-table">
-    <tr class="list-table-header" *ngIf="content.length !== 0">
+    <tr class="list-table-header" *ngIf="contentMeat.length || contentSuple.length">
         <td 
             *ngFor="let head of header"
             [ngStyle]="{'width.percent': head.Width}"
         >{{ head.Name }}</td>
     </tr>
-    <tr class="list-table-body" *ngFor="let meat of content">
+
+    <tr class="list-table-body" *ngFor="let meat of contentMeat">
         <td style="width: 30%;">{{ meat.Name }}</td>
         <td style="width: 15%;">{{ meat.Weight }}g</td>
         <td style="width: 15%;">{{ meat.Kcal }}</td>
@@ -13,12 +14,21 @@
         <td style="width: 15%;">{{ meat.Fats }}g</td>
         <td style="width: 10%;" (click)="onDeleteItem(meat)">Usuń</td>
     </tr>
-    <tr class="list-table-summary" *ngIf="content.length !== 0">
+    <tr class="list-table-body" *ngFor="let suple of contentSuple">
+        <td style="width: 80%; justify-content: center"> {{ suple.suple.Name }}</td>
+        <td style="width: 20%; justify-content: center; background-color: #ECECEC;"> {{ suple.data }}</td>
+    </tr>
+
+    <tr class="list-table-summary" *ngIf="contentMeat.length !== 0">
         <td style="width: 30%; font: bolder;">{{ summary.Name }}</td>
         <td style="width: 15%; font: bolder;">{{ summary.Weight }}g</td>
         <td style="width: 15%; font: bolder;">{{ summary.Kcal }}</td>
         <td style="width: 15%; font: bolder;">{{ summary.Protein }}g</td>
         <td style="width: 15%; font: bolder;">{{ summary.Fats }}g</td>
         <td style="width: 10%;"></td>
+    </tr>
+    <tr class="list-table-summary" *ngIf="contentSuple.length">
+        <td style="width: 70%; justify-content: center"> Łącznie </td>
+        <td style="width: 30%; justify-content: center"> {{ supleSummary}}g </td>
     </tr>
 </table>
