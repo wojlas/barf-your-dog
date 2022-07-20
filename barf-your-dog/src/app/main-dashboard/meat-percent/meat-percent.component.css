@@ -1,0 +1,34 @@
+.meat-percent {
+    position: relative;
+}
+
+.meat-summary {
+    width: 100%;
+}
+
+.meat-summary-header {
+    padding-left: 20px;
+    padding-top: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #66B2FF;
+    border-top: 0.5px solid black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.content-table-header td {
+    padding-left: 20px;
+}
+
+.content-table {
+    width: 100%;
+}
+
+.content-table-body {
+    border-bottom: 1px solid black;
+}
+
+.content-table-body td {
+    padding-left: 20px;
+}

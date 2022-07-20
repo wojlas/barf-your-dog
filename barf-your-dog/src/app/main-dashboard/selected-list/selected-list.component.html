@@ -1,5 +1,5 @@
 <table class="list-table">
-    <tr class="list-table-header" *ngIf="contentMeat.length || contentSuple.length">
+    <tr class="list-table-header table-header" *ngIf="contentMeat.length || contentSuple.length">
         <td 
             *ngFor="let head of header"
             [ngStyle]="{'width.percent': head.Width}"
@@ -16,7 +16,7 @@
     </tr>
     <tr class="list-table-body" *ngFor="let suple of contentSuple">
         <td style="width: 80%; justify-content: center"> {{ suple.suple.Name }}</td>
-        <td style="width: 20%; justify-content: center; background-color: #ECECEC;"> {{ suple.data }}</td>
+        <td style="width: 20%; justify-content: center; background-color: #ECECEC;"> {{ suple.data }}g</td>
     </tr>
 
     <tr class="list-table-summary" *ngIf="contentMeat.length !== 0">

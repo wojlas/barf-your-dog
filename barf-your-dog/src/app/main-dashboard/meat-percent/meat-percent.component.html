@@ -1,0 +1,37 @@
+<div class="meat-percent" *ngIf="isVisible; else closedTab">
+    <div class="meat-summary">
+        <div class="meat-summary-header" (click)="isVisible = !isVisible">Proporcje mięsa</div>
+        <div class="meat-summary-content">
+            <table class="content-table" *ngIf="mealWeight !== 0">
+                <tr class="content-table-header table-header">
+                    <td style="width: 80%">Rodzaj mięsa</td>
+                    <td style="width: 20%;">gram</td>
+                </tr>
+                <tr class="content-table-body" >
+                    <td style="width: 80%">Mięso</td>
+                    <td style="width: 20%; background-color: #ECECEC;">{{meatWeight}}</td>
+                </tr>
+                <tr class="content-table-body" >
+                    <td style="width: 80%">Podroby</td>
+                    <td style="width: 20%; background-color: #ECECEC;">{{offalWeight}}</td>
+                </tr>
+                <tr class="content-table-body" >
+                    <td style="width: 80%">Wątroba</td>
+                    <td style="width: 20%; background-color: #ECECEC;">{{liverWeight}}</td>
+                </tr>
+                <tr class="content-table-body" >
+                    <td style="width: 80%">Warzywa</td>
+                    <td style="width: 20%; background-color: #ECECEC;">{{vegeWeight}}</td>
+                </tr>
+                <tr class="content-table-body" >
+                    <td style="width: 80%">Owoce</td>
+                    <td style="width: 20%; background-color: #ECECEC;">{{fruitWeight}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #closedTab>
+    <div class="meat-summary-header" (click)="isVisible = !isVisible">Proporcje mięsa</div>
+</ng-template>

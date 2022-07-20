@@ -73,7 +73,7 @@ export class MainDashboardComponent implements OnInit {
     
   }
 
-  public calculateSuplies(): void {
+  public calculateSuplies(): void {    
     this.supliesMixArr = [];
     const { daily, weight, target, suplies} = this._dataForCalculate;
     //calculate daily meal
@@ -117,9 +117,9 @@ export class MainDashboardComponent implements OnInit {
     //calculate shell
     const shell = suplies.filter(el => el.Name === 'Skorupki jaj')[0];
     if (shell) {
-      const meatToDay = (this.dailyMeal * 0.55) + (this.dailyMeal * 0.15) + (this.dailyMeal * 0.05);
+      const meatToMeal = (this.dailyMeal * 0.55) + (this.dailyMeal * 0.15) + (this.dailyMeal * 0.05);
       const doseShell = (shell.doseToGram ? shell.doseToGram : 1) / 1000;
-      const resultShell = (doseShell * meatToDay) / 2;
+      const resultShell = (doseShell * meatToMeal) / 2;
       this.supliesMixArr.push({suple: shell, data: +this.toDecimal(resultShell, 3)});
     }
 
@@ -135,5 +135,9 @@ export class MainDashboardComponent implements OnInit {
     let d = Math.pow(10,decimals);
     return (figure * d/d).toFixed(decimals);
   };
+
+  public setDailyMeal(gram: number) {
+    this.dailyMeal = gram;
+  }
 
 }

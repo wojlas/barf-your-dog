@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header sticky">
     <div class="header-title">
         <span>Barf your dog</span>
     </div>
@@ -11,6 +11,7 @@
         (weightOutput)="setDogInfo($event)"
         (dailyOutput)="setDogInfo($event)"
         (targetOutput)="setDogInfo($event)"
+        (dailyMealOutput)="setDailyMeal($event)"
         ></app-dog-info>
     </div>
     <div class="suplies-selection">
@@ -23,5 +24,10 @@
         <app-final-results
             [supliesArr]="supliesMixArr"
         ></app-final-results>
+    </div>
+    <div class="percent">
+        <app-meat-percent
+            [mealWeight]="dailyMeal / 2"
+        ></app-meat-percent>
     </div>
 </div>

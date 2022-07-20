@@ -28,6 +28,7 @@ export class DogInfoComponent implements OnInit {
   @Output() weightOutput = new EventEmitter<{ inputName: string, value: number }>();  
   @Output() dailyOutput = new EventEmitter<{ inputName: string, value: number }>();
   @Output() targetOutput = new EventEmitter<{ inputName: string, value: number }>();
+  @Output() dailyMealOutput = new EventEmitter<number>();
 
 
 
@@ -50,12 +51,14 @@ export class DogInfoComponent implements OnInit {
     
     if (element === 'weight') {
       this.weightOutput.emit({ inputName: 'weight', value: +this.weightInput.nativeElement.value });
+      this.dailyMealOutput.emit(this.dailyMeal);
 
     } else if (element === 'daily') {
       this.dailyOutput.emit({ inputName: 'daily', value: +this.dailyInput.nativeElement.value });
       this.targetWeightPerc = this.dailyInput.nativeElement.value;
       this.dailyMeal = +this.toDecimal(((this.targetWeight * this.dailyInput.nativeElement.value)/100) * 1000, 2);
       this.dryMeal = +this.toDecimal(this.dailyMeal - (this.dailyMeal * 0.7), 2);
+      this.dailyMealOutput.emit(this.dailyMeal);
       
 
     } else if (element === 'target') {
@@ -63,10 +66,12 @@ export class DogInfoComponent implements OnInit {
       this.targetWeight = this.targetInput.nativeElement.value;
       this.dailyMeal = +this.toDecimal(((this.targetWeightPerc * this.targetInput.nativeElement.value)/100) * 1000, 2);
       this.dryMeal = +this.toDecimal(this.dailyMeal - (this.dailyMeal * 0.7), 2);
+      this.dailyMealOutput.emit(this.dailyMeal);
     
     } else if (element === 'meal-nr') {
       this.nrOfMeals = +this.nrOfMealsInput.nativeElement.value;
       this.singleMeal = +this.toDecimal(this.dailyMeal / this.nrOfMealsInput.nativeElement.value, 2);
+      this.dailyMealOutput.emit(this.dailyMeal);
     }
   }
 

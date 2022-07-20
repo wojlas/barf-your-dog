@@ -15,6 +15,7 @@ import { SetWeightComponent } from './global/set-weight/set-weight.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DogInfoComponent } from './main-dashboard/dog-info/dog-info.component';
+import { MeatPercentComponent } from './main-dashboard/meat-percent/meat-percent.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DogInfoComponent } from './main-dashboard/dog-info/dog-info.component';
     WarningDialogComponent,
     SetWeightComponent,
     DogInfoComponent,
+    MeatPercentComponent,
   ],
   imports: [
     BrowserModule,
